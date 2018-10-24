@@ -1,0 +1,7 @@
+###################################################
+[LumenVox]
+name=LumenVox Products x86_64
+baseurl=http://www.LumenVox.com/packages/EL7/x86_64/
+enabled=1
+gpgcheck=0
+###################################################
