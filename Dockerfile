@@ -9,6 +9,13 @@ RUN chmod +x /usr/lib/libTTS.so
 COPY conf/setenv.sh /opt/tomcat/bin
 RUN chmod +x /opt/tomcat/bin/setenv.sh
 
+# Re-configure tomcat
+COPY conf/server.xml /opt/tomcat/conf
+
+# Deploy WebApp 
+RUN rm -rf /opt/tomcat/webapps/*
+COPY apps/TTSServer.war /opt/tomcat/webapps
+
 # Install Lame MP3 Encoder
 COPY conf/init_lame.sh /opt
 RUN chmod +x /opt/init_lame.sh
@@ -24,20 +31,28 @@ RUN yum -y update && \
  yum -y install LumenVoxTTS && \
  yum -y install LumenVoxLicenseServer
 
+ # Install LumenVox Voices
+ RUN yum -y install LumenVox-Amanda-VoiceDB && \
+  yum -y install LumenVox-Chris-VoiceDB && \
+  yum -y install LumenVox-Amanda_22-VoiceDB  && \
+  yum -y install LumenVox-Chris_22-VoiceDB
+
+# Set ADMIN_PORT = 8080
+COPY conf/manager.conf /etc/lumenvox/manager.conf
+
 # /etc/lumenvox/license_server.conf configures license and license code
 # /etc/lumenvox/manager.conf configures ADMIN_PORT, e.g. 8000
 # LIC PORT NUM : 7569 
 # TTS PORT NUM : 7579 
-# ADMIN PORT   : 8000
-# TOMCAT : 8080
+# ADMIN PORT   : 8080
+# TOMCAT : 80
 
 EXPOSE 7569
 EXPOSE 7579 
-EXPOSE 8000
 EXPOSE 8080
+EXPOSE 80
 
 COPY conf/init.sh /opt
 RUN chmod +x /opt/init.sh
 WORKDIR /etc/lumenvox
-
 CMD ["/opt/init.sh"]
