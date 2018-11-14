@@ -16,6 +16,7 @@ RUN /opt/init_lame.sh
 
 # Install LumenVox Software 
 COPY conf/LumenVox.repo /etc/yum.repos.d
+COPY conf/LumenVox386.repo /etc/yum.repos.d
 RUN yum -y update && \
  yum -y upgrade && \
  yum -y install LumenVoxCore && \
