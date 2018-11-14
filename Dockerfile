@@ -39,9 +39,9 @@ RUN yum -y update && \
 
 # Set ADMIN_PORT = 8080
 COPY conf/manager.conf /etc/lumenvox/manager.conf
-
-# /etc/lumenvox/license_server.conf configures license and license code
-# /etc/lumenvox/manager.conf configures ADMIN_PORT, e.g. 8000
+COPY conf/license_server.txt /etc/lumenvox/license_server.txt
+# license_server.conf configures license and license code
+# manager.conf configures ADMIN_PORT, e.g. 8000
 # LIC PORT NUM : 7569 
 # TTS PORT NUM : 7579 
 # ADMIN PORT   : 8080

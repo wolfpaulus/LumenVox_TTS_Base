@@ -4,8 +4,9 @@ LumenVox is a speech automation solutions company providing core speech technolo
 
 This image serves as a base for a Java Webservice implementation providing LumenVox based Speech Synthesis. It contains two voices (Amanda and Chris) the web, native libs, lame MP3 encoder, the LumenVox Core, Client, and LicenseServer. 
 
-The license needs to be provided at container launch like this:
->sudo docker run -d --name lvox  -v $(pwd)/vol1:/opt/conf -p80:80 lvox
-with the license file like this:
-> $(pwd)/vol1/license_server.conf
+The license code needs to be provided as an environent variable at container launch like this:
+
+>sudo docker run -d --name lvox -e LV_LIC={12345} -p80:80 lvox
+
+
  

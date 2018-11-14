@@ -1,0 +1,139 @@
+[GLOBAL]
+#******************************************************************************#
+#* Description: Config file version. Do not modify
+#* Default Value: 16.0.200
+#******************************************************************************#
+VERSION = 16.0.200
+
+#******************************************************************************#
+#* Description: Port number used by the license server to listen for connecting
+#*    license clients
+#*    
+#* Default Value: 7569
+#******************************************************************************#
+port_number = default
+
+#******************************************************************************#
+#* Description: Controls whether the license server should start in flexible
+#*    licensing mode
+#*    
+#* Possible Values:
+#*    0 - Disabled
+#*    1 - Enabled
+#*    
+#* Default Value: 0
+#******************************************************************************#
+FLEXIBLE_LICENSING_MODE = 1
+
+#******************************************************************************#
+#* Description: The unique ID associated with this license server in the
+#*    LumenVox Flexible Licensing Reporting Nodes.
+#*    
+#* Possible Values:
+#*        A GUID obtained from the LumenVox licensing website
+#*    
+#* Default Value: 
+#******************************************************************************#
+LICENSE_SERVER_GUID = $LV_LIC
+
+#******************************************************************************#
+#* Description: Use a https connection in communicating with the LumenVox
+#*    Flexible Licensing Reporting Nodes.
+#*    
+#* Possible Values:
+#*    0 - Disabled
+#*    1 - Enabled
+#*    
+#* Default Value: 0
+#******************************************************************************#
+USE_FLEX_REPORTING_HTTPS = default
+
+#******************************************************************************#
+#* Description: Use this port in communicating with the LumenVox
+#*    Flexible Licensing Reporting HTTP Nodes.
+#*    
+#* Possible Values:
+#*    80, 8080, 13449, 24963, 43038
+#*    
+#* Default Value: 80
+#******************************************************************************#
+FLEX_REPORTING_PORT = default
+
+#******************************************************************************#
+#* Description: Use this port in communicating with the LumenVox
+#*    Flexible Licensing Reporting HTTPS Nodes.
+#*    
+#* Possible Values:
+#*    443, 8443, 23028, 39520, 48846
+#*    
+#* Default Value: 443
+#******************************************************************************#
+FLEX_REPORTING_PORT_HTTPS = default
+
+#******************************************************************************#
+#* Description: The hour at which flexible licensing reports should be
+#*    initiated. Note that if both FLEX_DESIRED_SYNC_HOUR and
+#*    FLEX_DESIRED_SYNC_MINUTE are 0, no preset sync time will be used, so
+#*    reporting will be based on interval since last sync.
+#*    
+#* Possible Values:
+#*        0-23 (local time hour)
+#*    
+#* Default Value: 0
+#******************************************************************************#
+FLEX_DESIRED_SYNC_HOUR = default
+
+#******************************************************************************#
+#* Description: The minute at which flexible licensing reports should be
+#*    initiated. Note that if both FLEX_DESIRED_SYNC_HOUR and
+#*    FLEX_DESIRED_SYNC_MINUTE are 0, no preset sync time will be used, so
+#*    reporting will be based on interval since last sync.
+#*    
+#* Possible Values:
+#*        0-59 (local time minute)
+#*    
+#* Default Value: 0
+#******************************************************************************#
+FLEX_DESIRED_SYNC_MINUTE = default
+
+#******************************************************************************#
+#* Description: List of flexible licensing nodes the License server is going
+#*    to communicate with in flexible licensing mode. 
+#*    The list is separated by semicolons and should not have white spaces
+#*    
+#* Default Value: flexlicense1.lumenvox.com;flexlicense2.lumenvox.com;flexlicense3.lumenvox.com;flexlicense4.lumenvox.com;flexlicense5.lumenvox.com;flexlicense6.lumenvox.com;flexlicense7.lumenvox.com;flexlicense8.lumenvox.com;flexlicense9.lumenvox.com;flexlicense10.lumenvox.com
+#******************************************************************************#
+FLEX_NODE_LIST = default
+
+#******************************************************************************#
+#* Description: List of flexible licensing nodes the License server is going
+#*    to communicate with in flexible licensing mode when using HTTPS
+#*    (i.e. when USE_FLEX_REPORTING_HTTPS is enabled)
+#*    The list is separated by semicolons and should not have white spaces
+#*    
+#* Default Value: flexlicense-s01.lumenvox.com;flexlicense-s02.lumenvox.com;flexlicense-s03.lumenvox.com;flexlicense-s04.lumenvox.com;flexlicense-s05.lumenvox.com;flexlicense-s06.lumenvox.com;flexlicense-s07.lumenvox.com;flexlicense-s08.lumenvox.com;flexlicense-s09.lumenvox.com;flexlicense-s10.lumenvox.com
+#******************************************************************************#
+FLEX_NODE_LIST_HTTPS = default
+
+#******************************************************************************#
+#* Description: Controls the verbosity of event logging. This can be used to
+#*    increase or decrease the amount of log events that are generated.
+#*    Note that increasing logging verbosity uses more CPU, and should
+#*    therefore be avoided wherever possible in production systems where
+#*    optimal performance is critical
+#*    
+#* Possible Values:
+#*    1 - Minimal logging
+#*        Logs only errors and critical issues.
+#*    2 - Medium logging
+#*        Logs all non-debug information as events occur
+#*    3 - Maximum logging
+#*        Logs all types of events. This will include any and all informational
+#*        and debugging activity
+#*    
+#* Default Value: 1
+#******************************************************************************#
+LOGGING_VERBOSITY = default
+
+[AuthenticationLogFile]
+
