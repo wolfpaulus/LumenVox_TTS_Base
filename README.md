@@ -6,7 +6,7 @@ This image serves as a base for a Java Webservice implementation providing Lumen
 
 The license code needs to be provided as an environent variable at container launch like this:
 
->sudo docker run -d --name lvox -e LV_LIC={12345} -p80:80 lvox
+>sudo docker run -d --name lvox -e LV_LIC={12345} -p80:8080 lvox
 
 
  
