@@ -19,29 +19,30 @@ COPY apps/TTSServer.war /opt/tomcat/webapps
 # Install Lame MP3 Encoder
 COPY conf/init_lame.sh /opt
 RUN chmod +x /opt/init_lame.sh
-RUN /opt/init_lame.sh
+RUN /opt/init_lame_el7.sh
 
-# Install LumenVox Software 
+# Install LumenVox Software (libncurses.so.5()(64bit) and libtinfo.so.5()(64bit) needed by lame-3.100-1.el7.x86_64
 COPY conf/LumenVox.repo /etc/yum.repos.d
 COPY conf/LumenVox386.repo /etc/yum.repos.d
 RUN yum -y update && \
  yum -y upgrade && \
+ yum -y install libncurses && \
  yum -y install LumenVoxCore && \
  yum -y install LumenVoxClient && \
  yum -y install LumenVoxTTS && \
  yum -y install LumenVoxLicenseServer
 
- # Install LumenVox Voices
- RUN yum -y install LumenVox-Amanda-VoiceDB && \
-  yum -y install LumenVox-Chris-VoiceDB && \
-  yum -y install LumenVox-Amanda_22-VoiceDB  && \
-  yum -y install LumenVox-Chris_22-VoiceDB
+# Install LumenVox Voices
+RUN yum -y install LumenVox-Amanda-VoiceDB && \
+ yum -y install LumenVox-Chris-VoiceDB && \
+ yum -y install LumenVox-Amanda_22-VoiceDB  && \
+ yum -y install LumenVox-Chris_22-VoiceDB
 
-# Set ADMIN_PORT = 8080
+# Set ADMIN_PORT
 COPY conf/manager.conf /etc/lumenvox/manager.conf
 COPY conf/license_server.txt /etc/lumenvox/license_server.txt
-# license_server.conf configures license and license code
-# manager.conf configures ADMIN_PORT, e.g. 8000
+# license_server.conf configures license and license code to env var $LV_LIC
+# manager.conf configures ADMIN_PORT to 8000
 # LIC PORT NUM : 7569 
 # TTS PORT NUM : 7579 
 # ADMIN PORT   : 8000
@@ -54,5 +55,8 @@ EXPOSE 8080
 
 COPY conf/init.sh /opt
 RUN chmod +x /opt/init.sh
+RUN ln -s /dev/stdout /var/log/lumenvox/license/license_server_app.txt
+RUN ln -s /dev/stdout /var/log/lumenvox/ttsserver/tts_server_app.txt
+
 WORKDIR /etc/lumenvox
 CMD ["/opt/init.sh"]
