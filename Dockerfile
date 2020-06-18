@@ -1,5 +1,6 @@
 # LumenVox Speech Synthesis Base on CentOS 
-FROM techcasita/centos_tomcat_openjdk
+FROM techcasita/centos7_tomcat_openjdk:latest
+
 MAINTAINER Wolf Paulus <wolf@paulus.com>
 WORKDIR /opt/tomcat
 
@@ -16,21 +17,20 @@ COPY conf/server.xml /opt/tomcat/conf
 RUN rm -rf /opt/tomcat/webapps/*
 COPY apps/TTSServer.war /opt/tomcat/webapps
 
-# Install Lame MP3 Encoder
-COPY conf/init_lame.sh /opt
-RUN chmod +x /opt/init_lame.sh
-RUN /opt/init_lame_el7.sh
-
-# Install LumenVox Software (libncurses.so.5()(64bit) and libtinfo.so.5()(64bit) needed by lame-3.100-1.el7.x86_64
+# Install LumenVox Software
 COPY conf/LumenVox.repo /etc/yum.repos.d
 COPY conf/LumenVox386.repo /etc/yum.repos.d
 RUN yum -y update && \
  yum -y upgrade && \
- yum -y install libncurses && \
  yum -y install LumenVoxCore && \
  yum -y install LumenVoxClient && \
  yum -y install LumenVoxTTS && \
- yum -y install LumenVoxLicenseServer
+ yum -y install LumenVoxLicenseServer && \
+ yum -y install ncurses-devel
+
+COPY conf/init_lame_el7.sh /opt
+RUN chmod +x /opt/init_lame_el7.sh
+RUN /opt/init_lame_el7.sh
 
 # Install LumenVox Voices
 RUN yum -y install LumenVox-Amanda-VoiceDB && \
@@ -49,7 +49,7 @@ COPY conf/license_server.txt /etc/lumenvox/license_server.txt
 # TOMCAT : 8080
 
 EXPOSE 7569
-EXPOSE 7579 
+EXPOSE 7579
 EXPOSE 8000
 EXPOSE 8080
 
