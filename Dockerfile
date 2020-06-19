@@ -52,6 +52,7 @@ EXPOSE 7569
 EXPOSE 7579
 EXPOSE 8000
 EXPOSE 8080
+EXPOSE 9443
 
 COPY conf/init.sh /opt
 RUN chmod +x /opt/init.sh
