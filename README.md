@@ -50,10 +50,10 @@ docker build -t lumenvox_tts_base .
 
 ### Web UI 
 
-![alt text](./instructions/gui.jpg "TTS Web UI")
+![alt text](./instructions/gui1.jpg "TTS Web UI")
 
 ### Web Management UI 
 
 ![alt text](./instructions/gui2.jpg "LumenVox Web UI")
 
-![alt text](./instructions/gui2.jpg "LumenVox Web UI")
+![alt text](./instructions/gui3.jpg "LumenVox Web UI")
